@@ -1,4 +1,3 @@
-console.log('it works');
 const myForm = document.querySelector('#post-form');
 const submitButton = document.querySelector('.btn-primary');
 const postTitle = document.getElementById('postTitle');
@@ -24,6 +23,7 @@ submitButton.addEventListener('click', (event) => {
     const invalidDiv = document.querySelector('.card-body');
     invalidDiv.classList.remove('invalid-feedBack');
     const container = document.querySelector('.container');
+//Create a new element post.
     const myPost = `
     <div class="card">
       <img class="card-img-top" src="https://picsum.photos/500/200" alt="Card image cap">
@@ -44,7 +44,7 @@ submitButton.addEventListener('click', (event) => {
     postList.prepend(myFragment);
     container.prepend(postList);
     const deleteButton = document.querySelectorAll('.btn-delete');
-
+//Delete a post from the dom.
     for (let i = 0; i < deleteButton.length; i++) {
       deleteButton[i].addEventListener('click', (e) => {
         const cardDele = deleteButton[i].parentElement.parentElement;
