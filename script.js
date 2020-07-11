@@ -7,7 +7,10 @@ const postAuthor = document.querySelector(`[name = 'postAuthor']`);
 const showForm = document.querySelector('#show-form');
 const postForm = document.querySelector('#post-form');
 const collection = document.getElementsByClassName('col-8 offset-2');
-console.log(collection)
+const postList = document.querySelector('#post-list');
+const postCard = document.querySelector('.card');
+const formCard = document.querySelector('#form-card');
+
 
 // Add an event listener here
 submitButton.addEventListener('click', (event) => {
@@ -21,7 +24,6 @@ submitButton.addEventListener('click', (event) => {
     const invalidDiv = document.querySelector('.card-body');
     invalidDiv.classList.remove('invalid-feedBack');
     const container = document.querySelector('.container');
-    const postList = document.querySelector('#post-list');
     const myPost = `
     <div class="card">
       <img class="card-img-top" src="https://picsum.photos/500/200" alt="Card image cap">
@@ -41,16 +43,25 @@ submitButton.addEventListener('click', (event) => {
     const myFragment = document.createRange().createContextualFragment(myPost);
     postList.prepend(myFragment);
     container.prepend(postList);
+    const deleteButton = document.querySelectorAll('.btn-delete');
+
+    for (let i = 0; i < deleteButton.length; i++) {
+      deleteButton[i].addEventListener('click', (e) => {
+        const cardDele = deleteButton[i].parentElement.parentElement;
+        cardDele.style.display = 'none'
+      });
+    }
   };
   myForm.reset();
 })
 
+// Show and hide the form
 showForm.addEventListener('click', (e) => {
   if (showForm.textContent === "Hide form") {
-    postForm.classList.add('hidden');
+    formCard.style.display = "none"
     showForm.textContent = "show form";
   } else {
-    postForm.classList.remove('hidden');
-    showForm.textContent = "Hide form"
+    formCard.style.display = "block";
+    showForm.textContent = "Hide form";
   }
-})
+});
